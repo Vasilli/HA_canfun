@@ -17,8 +17,7 @@
   },
   "homepage": "https://github.com/Vasilli/HA_canfun.git",
   "dependencies": {
-    "colors": "^1.0.3",
-    "minimist": "^1.1.0",
+    "minimist": "^1.2.8",
     "socketcan": "^2.0.1"
   }
 }
