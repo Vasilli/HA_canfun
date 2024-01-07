@@ -1,7 +1,13 @@
-var can = require('./init.js');
+const can = require('./init.js');
+const util = require('util');
+const obj = require('./CAN_DATA.json');
+
+console.log(obj);
 
 
 can.onMessage(function(msg) {
+
+  console.log(util.inspect(msg, {depth: null})); //':'+msg);
 
   var outstr = can.decToHex(msg.id) + ": ";
 
@@ -9,7 +15,7 @@ can.onMessage(function(msg) {
     outstr += can.decToHex(msg.data[x], 2) + " ";
   }
 
-  console.log(outstr);
+//  console.log(outstr);
 
 
 });
