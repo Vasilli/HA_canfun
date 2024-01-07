@@ -1,0 +1,91 @@
+-----------------LEFT RIGHT Signal--------------
+335 00 00 00 00 00 00 00 00
+                   01        : 00->01 left right signal
+                   02        : 00->02 alert signal
+
+3C2 00 00 00 00 00 00 00 00
+             08              : 00->08 left
+             20              : 00->20 right
+
+-------------------Alert Signal-----------------
+46B 00 00 00 00 00 00 00 00
+       01                    : 00->01 alert ON
+
+335 00 00 00 00 00 00 00 00
+                   02        : 00->02 alert + right signal
+3C2 00 00 00 00 00 00 00 00
+             28              : 00-28 alert + right left signal
+
+-------------------------- Beam----------------- 
+3C2 00 00 00 00 00 00 00 00
+          04                 : 00->04 high beam ON
+       40                    : 00->40 parking 
+          01                 : 00->01 low beam ON
+          01 01              : 00->01 00->01 fog ON
+          05                 : 00->05 low & high beam ON
+
+335             x4           : x0->x4->x0 FOG buttom
+
+335 3C2                      : FRONT LIGHT AUTO/PARK/
+
+--------------------LEFT RIGHT window-----------
+3A1 00 00 00 00 00 00 00 00
+    -- -- --                 : LEFT change
+320 00 00 00 00 00 00 00 00
+    -- -- --                 : RIGHT change
+
+08F 00 00
+    01                       : LEFT window DOWN
+    02                       : LEFT window UP
+    10                       : RIGHT window UP
+    08                       : RIGHT window DOWN
+
+
+-------------------LOCK DOORs----------------
+307 00 00 00 00 00 00 00 00
+    -- -- -- --              : 1F 00 00 00 -> 07 22 22 0A  UNLOCK
+                             : 1F 00 00 00 -> 07 11 11 01  LOCK door
+2FB
+
+
+-------------------REMOTE CONTROL-------
+2FB 307 309 335 3C2 507 
+
+------------------buttoms------------
+1F3 00 00 00 00 00 00 00 00
+    01                       : 00->01->00 NAVI/MAP
+    02                       : 00->02->00 TEL
+    20                       : 00->20->00 RADIO
+    40                       : 00->40->00 CAR simbol
+             40              : 0x->4x->4x SILEN (ON/OFF) simbol
+
+1F3                          : VOLUME
+353 357                      : VENT UP/DOWN NOGY/GRUD/OKNO
+357 357 3E2 358              : TEMP
+353                  -- --   : obduv pered window MAX
+
+-----------------Condicioner------------
+353 00 00 00 00 00 00 00 00
+       00                    : OFF
+       04                    : ON
+       01                    : ON vneshniy/vnutreniy 
+37F 00 00 00 00 00 00 00 00
+    40                       : ON
+    41                       : OFF
+       80                    : 00->80 click vneshniy/vnutreniy zabor vozduxa
+
+
+---------------DOOR OPEN/CLOSE
+369 00 00 00 00 00 00 00 00
+    09 F3 20                 : 00 00 00->09 F3 20 OPEN any DOOR
+    00 00 00                 : 09 F3 20->00 00 00 CLOSE any DOOR
+
+3C2 00 00 00 00 00 00 00 00
+                   00        : 40->00 OPEN LEFT and RIGHT(pass) DOOR  
+                   40        : 00->40 CLOSEd LEFT and RIGHT(pass) DOOR
+
+------------------TAXOM???-----
+350 00 00 00 00 00 00 00 00
+    01 85 -- --                 : 3 2 
+
+
