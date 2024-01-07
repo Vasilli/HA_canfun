@@ -26,9 +26,9 @@ can.addListener("onMessage", function() {
 
 can.start();
 
-module.exports.send = function(msg) {
-  can.send(msg);
-};
+//module.exports.send = function(msg) {
+//  can.send(msg);
+//};
 
 
 var closecallbacks = [];

@@ -1,0 +1,41 @@
+var request = require('request');
+
+request.post(
+    //First parameter API to make post request
+    'https://reqres.in/api/users',
+
+    //Second parameter DATA which has to be sent to API
+    { json: {
+        name: "paul rudd",
+        movies: ["I Love You Man", "Role Models"]
+      } 
+    },
+    
+    //Thrid parameter Callack function  
+    function (error, response, body) {
+        if (!error && response.statusCode == 201) {
+            console.log(body);
+        }
+    }
+);
+
+-----------
+var request = require('request');
+
+//Custom Header pass
+var headersOpt = {  
+    "content-type": "application/json",
+};
+request(
+        {
+        method:'post',
+        url:'https://www.googleapis.com/urlshortener/v1/url', 
+        form: {name:'hello',age:25}, 
+        headers: headersOpt,
+        json: true,
+    }, function (error, response, body) {  
+        //Print the Response
+        console.log(body);  
+}); 
+
+-------
