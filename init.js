@@ -1,7 +1,12 @@
 var argv = require('minimist')(process.argv.slice(2), {
   string: ['id', 'basebuffer']
 });
-var socketcan = require('socketcan');
+const socketcan = require('socketcan');
+
+module.exports.byteToHex = function(b) {
+  return Number(b).toString(16).toUpperCase();
+};
+
 
 module.exports.decToHex = function(d, padlength) {
   padlength = padlength || 3;

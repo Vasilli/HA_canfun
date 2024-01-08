@@ -1,49 +1,71 @@
-const can = require('./init.js');
-const util = require('util');
-const obj = require('./CAN_DATA.json');
-const keys = Object.keys(obj);
+const can     = require('./init.js');
+const util    = require('util');
+const candesc = require('./CAN_DATA.json');
+const canids = Object.keys(candesc);
 
-console.log(obj);
-console.log(keys);
-console.log('inc 1CC:',keys.includes("1CC"));
+//console.log(candesc);
+console.log(canids);
+//console.log('inc 1CC:',canids.includes("1CC"));
 
-// 0 1 2 3 4 5 6 7 8 9 A B C D E F 
-// 
-//
-// F E D C B A 9 8 7 6 5 4 3 2 1
-// 
-
-
-var lastdata = {};
-
+//---------------------------
 can.onMessage(function(msg) {
 
-  console.log(util.inspect(msg, {depth: null})); //':'+msg);
+  var id = can.byteToHex(msg.id);
+  if(canids.includes(id)) { // only if have in canDesc file
 
-  // was before
-  if(lastdata[msg.id]) {
+    findPost(id, msg.data);
 
-
-
-    if(msg.id == 0x1CC && keys.includes('1CC')) {
-      console.log('--find:1CC'); 
-    }
-    else if(msg.id == 0x458 && keys.includes('458')) {
-      console.log('--find:458');
-    }
-
-  }
-  lastdata[msg.id] = msg.data;
-
-
-  var outstr = can.decToHex(msg.id) + ": ";
-
-  for(x = 0; x < msg.data.length; x++) {
-    outstr += can.decToHex(msg.data[x], 2) + " ";
-  }
-
-//  console.log(outstr);
-
-
+  } // if
 });
 
+
+//---------------------------
+var lastobj = {};
+// byte: 00,01,02,03,04,05,06,07
+// bit:  07,06,05,04,03,02,01,00
+function findPost(id, data) {
+
+  if(lastobj[id]) {
+    console.log('  :',id);
+
+    var lastdata = lastobj[id];
+
+    for(var x = 0; x < data.length; x++) {
+
+      console.log('   b:',x,' m:',can.decToHex(data[x],8),' l:',can.decToHex(lastdata[x],8),' :',data[x] !== lastdata[x]);
+
+       if(data[x] !== lastdata[x]) {
+         console.log(         '!=');
+
+
+
+      } // if
+    } // for
+  } // if
+  lastobj[id] = data;
+}
+
+
+//---------------------------
+function findBitPos(lastData, newData) {
+
+  var json = {}, odt, ndt;
+
+  for(var pos = 0; pos < 8; pos++) {
+
+    odt = (lastData & (1 << pos));
+    ndt = (newData  & (1 << pos));
+
+    if(odt !== ndt)
+      json[pos] = !!ndt;
+  }
+  return json;
+}
+
+
+
+
+
+
+//  console.log(util.inspect(msg, {depth: null}));
+//  console.log('msg.id:',msg.id,' hex.id:',can.decToHex(msg.id),' inc:',canids.includes(can.byteToHex(msg.id)));
