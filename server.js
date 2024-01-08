@@ -1,11 +1,9 @@
 const can     = require('./init.js');
 const util    = require('util');
+const superagent = require('superagent');
 const candesc = require('./CAN_DATA.json');
 const canids = Object.keys(candesc);
 
-//console.log(candesc);
-console.log(canids);
-//console.log('inc 1CC:',canids.includes("1CC"));
 
 //---------------------------
 can.onMessage(function(msg) {
@@ -18,7 +16,6 @@ can.onMessage(function(msg) {
   } // if
 });
 
-
 //---------------------------
 var lastobj = {};
 // byte: 00,01,02,03,04,05,06,07
@@ -26,28 +23,45 @@ var lastobj = {};
 function findPost(id, data) {
 
   if(lastobj[id]) {
-    console.log('  :',id);
 
     var lastdata = lastobj[id];
 
-    for(var x = 0; x < data.length; x++) {
+    for(var pos = 0; pos < data.length; pos++) {
 
-      console.log('   b:',x,' m:',can.decToHex(data[x],8),' l:',can.decToHex(lastdata[x],8),' :',data[x] !== lastdata[x]);
+       if(data[pos] !== lastdata[pos]) {
 
-       if(data[x] !== lastdata[x]) {
-         console.log(         '!=');
+         var bit = findBitPos(data[pos], lastdata[pos]);
 
-
-
+        for(var idx = 0; idx < 8; idx++) {
+          if(bit.hasOwnProperty(idx)) {
+            addJSON(id, idx, pos, bit);
+          }
+        }
       } // if
     } // for
   } // if
   lastobj[id] = data;
+
 }
 
+//---------------------------
+function addJSON(id, idx, pos, bit) {
+
+  var json = {'attributes':{}};
+
+  if(candesc[id][idx].sn) {
+    json.entity_id = candesc[id][idx].sn;
+    json.state = bit[idx] ? 'on' : 'off';
+    json.attributes.id = id;
+    json.attributes.idx = idx;
+    json.attributes.pos = pos;
+    json.attributes.friendly_name = candesc[id][idx].fn;
+    rest_POST(json);
+  }
+}
 
 //---------------------------
-function findBitPos(lastData, newData) {
+function findBitPos(newData, lastData) {
 
   var json = {}, odt, ndt;
 
@@ -63,9 +77,22 @@ function findBitPos(lastData, newData) {
 }
 
 
+//---------------------------
+function rest_POST(json) {
+
+  superagent
+    .post('http://192.168.12.100:8123/api/states/' + json.entity_id)
+    .send(json)
+    .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkMDZmNTRhNzI4NDk0NDliYTNkNWFhZGEwMjA1MzcyYSIsImlhdCI6MTcwNDU4OTMxMiwiZXhwIjoyMDE5OTQ5MzEyfQ.WqMshC_Pp0wYG0Bao2eronDEDDc5EiYQPZnCDF0UVFU')
+    .set('accept', 'json')
+    .end((err, res) => {
+      //console.log(res.text);
+    });
+
+}
 
 
-
-
+// console.log("c:",candesc[id][idx]," :",bit[idx]);
+//       console.log('   b:',x,' m:',can.decToHex(data[x],8),' l:',can.decToHex(lastdata[x],8),' :',data[x] !== lastdata[x]);
 //  console.log(util.inspect(msg, {depth: null}));
 //  console.log('msg.id:',msg.id,' hex.id:',can.decToHex(msg.id),' inc:',canids.includes(can.byteToHex(msg.id)));
