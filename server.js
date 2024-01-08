@@ -49,7 +49,7 @@ function addJSON(id, idx, pos, bit) {
 
   var json = {'attributes':{}};
 
-  if(candesc[id][idx].sn) {
+  if(candesc[id][idx] && candesc[id][idx].sn) {
     json.entity_id = candesc[id][idx].sn;
     json.state = bit[idx] ? 'on' : 'off';
     json.attributes.id = id;
