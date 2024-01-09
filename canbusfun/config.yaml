@@ -1,0 +1,25 @@
+name: "Enable CANBUSFUN"
+description: "Enable the use of CAN in Home Assistant core."
+url: "https://github.com/Vasilli/HA_canfun"
+version: "1.0"
+slug: can_bus
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+startup: services
+host_network: true
+privileged:
+  - NET_ADMIN
+options:
+  device: "can0"
+  bitrate: 500000
+schema:
+  device: str
+  bitrate: int(10000,1000000)
+ports:
+  8000/tcp: 8000
+
