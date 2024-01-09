@@ -1,7 +1,7 @@
 {
   "3C2": {
-    "3": {"fn":"Right Signal","sn":"binary_sensor.right_signal"},
-    "5": {"fn":"Left Signal","sn":"binary_sensor.left_signal"}
+    "3": {"fn":"Left Signal","sn":"binary_sensor.in_left_signal"},
+    "5": {"fn":"Right Signal","sn":"binary_sensor.in_right_signal"}
   },
   "1CC": {
     "0": {"fn":"","sn":""},

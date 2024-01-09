@@ -41,7 +41,6 @@ function findPost(id, data) {
     } // for
   } // if
   lastobj[id] = data;
-
 }
 
 //---------------------------
@@ -49,7 +48,7 @@ function addJSON(id, idx, pos, bit) {
 
   var json = {'attributes':{}};
 
-  if(candesc[id][idx] && candesc[id][idx].sn) {
+  if(candesc[id] && candesc[id][idx] && candesc[id][idx].sn) {
     json.entity_id = candesc[id][idx].sn;
     json.state = bit[idx] ? 'on' : 'off';
     json.attributes.id = id;
