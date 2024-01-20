@@ -1,0 +1,42 @@
+      - alias: left_turn_on_signal
+        description: Left Turn On
+        initial_state: true
+        mode: single
+        trigger:
+          - platform: state
+            entity_id: binary_sensor.wyzesense_7799bb87 #binary_sensor.in_left_signal
+#            from: 'off'
+            to: 'on'
+        condition:
+          - condition: state
+            entity_id: light.front_left_yellow
+            state: 'off'
+        action:
+          repeat:
+            while:
+              - condition: state
+                entity_id: binary_sensor.wyzesense_7799bb87
+                state: 'on'
+            sequence:
+              - service: light.turn_on
+                data:
+                  entity_id: light.front_left_yellow
+                  brightness: 100
+                  transition: 0
+              - delay:
+                  hours: 0
+                  minutes: 0
+                  seconds: 0
+                  milliseconds: 300
+              - service: light.turn_off
+                data:
+                  entity_id: light.front_left_yellow
+                  transition: 0
+              - delay:
+                  hours: 0
+                  minutes: 0
+                  seconds: 0
+                  milliseconds: 300
+
+
+
