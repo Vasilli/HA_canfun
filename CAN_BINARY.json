@@ -37,7 +37,7 @@
   },
   "46B": {
     "1": {
-      "4": {"fn":"36B_1_4 Signal","sn":"binary_sensor.in_36B_1_4_signal"}
+      "4": {"fn":"Emergency Button","sn":"binary_sensor.in_emergency_button"}
     }
   }
 
