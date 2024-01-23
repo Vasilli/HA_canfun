@@ -1,4 +1,4 @@
 node_modules/
 package-lock.json
 shell_rest.txt
-
+*.swp
