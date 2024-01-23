@@ -1,9 +1,10 @@
-const can     = require('./init.js');
-const util    = require('util');
+const can        = require('./init.js');
+const util       = require('util');
 const superagent = require('superagent');
-const candesc = require('./CAN_DATA.json');
-const canids = Object.keys(candesc);
+const candesc    = require('./CAN_BINARY.json');
+const canids     = Object.keys(candesc);
 
+console.log(canids);
 
 //---------------------------
 can.onMessage(function(msg) {
@@ -11,70 +12,64 @@ can.onMessage(function(msg) {
   var id = can.byteToHex(msg.id);
   if(canids.includes(id)) { // only if have in canDesc file
 
-    findPost(id, msg.data);
+    findBytePosition(id, msg.data);
 
   } // if
 });
 
 //---------------------------
-var lastobj = {};
+var oldbyte = {};
 // byte: 00,01,02,03,04,05,06,07
 // bit:  07,06,05,04,03,02,01,00
-function findPost(id, data) {
+function findBytePosition(id, newbyte) {
 
-  if(lastobj[id]) {
+  if(oldbyte[id]) {
 
-    var lastdata = lastobj[id];
+    var lastdata = oldbyte[id];
 
-    for(var pos = 0; pos < data.length; pos++) {
+    for(var bytepos = 0; bytepos < newbyte.length; bytepos++) {
 
-       if(data[pos] !== lastdata[pos]) {
+       if(newbyte[bytepos] !== lastdata[bytepos]) {
 
-         var bit = findBitPos(data[pos], lastdata[pos]);
+         findBitPosition(id, bytepos, newbyte[bytepos], lastdata[bytepos]);
 
-        for(var idx = 0; idx < 8; idx++) {
-          if(bit.hasOwnProperty(idx)) {
-            addJSON(id, idx, pos, bit);
-          }
-        }
       } // if
     } // for
   } // if
-  lastobj[id] = data;
+  oldbyte[id] = newbyte;
 }
 
 //---------------------------
-function addJSON(id, idx, pos, bit) {
+function findBitPosition(id, bytepos, new_byte, old_byte) {
+
+  var odt, ndt;
+
+  for(var bitpos = 0; bitpos < 8; bitpos++) {
+
+    odt = (old_byte & (1 << bitpos));
+    ndt = (new_byte & (1 << bitpos));
+
+    if(odt !== ndt && candesc[id].hasOwnProperty(bytepos)) {
+      var bitstat = ndt ? 'on' : 'off';
+      addJSON(id, bytepos, bitpos, bitstat);
+    }
+  }
+}
+
+//---------------------------
+function addJSON(id, bytepos, bitpos, bitstat) {
 
   var json = {'attributes':{}};
 
-  if(candesc[id] && candesc[id][idx] && candesc[id][idx].sn) {
-    json.entity_id = candesc[id][idx].sn;
-    json.state = bit[idx] ? 'on' : 'off';
-    json.attributes.id = id;
-    json.attributes.idx = idx;
-    json.attributes.pos = pos;
-    json.attributes.friendly_name = candesc[id][idx].fn;
-    rest_POST(json);
-  }
+  json.entity_id = candesc[id][bytepos][bitpos].sn;
+  json.state = bitstat;
+  json.attributes.id = id;
+  json.attributes.idx = bytepos;
+  json.attributes.pos = bitpos;
+  json.attributes.friendly_name = candesc[id][bytepos][bitpos].fn;
+
+  rest_POST(json);
 }
-
-//---------------------------
-function findBitPos(newData, lastData) {
-
-  var json = {}, odt, ndt;
-
-  for(var pos = 0; pos < 8; pos++) {
-
-    odt = (lastData & (1 << pos));
-    ndt = (newData  & (1 << pos));
-
-    if(odt !== ndt)
-      json[pos] = !!ndt;
-  }
-  return json;
-}
-
 
 //---------------------------
 function rest_POST(json) {
@@ -87,11 +82,6 @@ function rest_POST(json) {
     .end((err, res) => {
       //console.log(res.text);
     });
-
 }
 
 
-// console.log("c:",candesc[id][idx]," :",bit[idx]);
-//       console.log('   b:',x,' m:',can.decToHex(data[x],8),' l:',can.decToHex(lastdata[x],8),' :',data[x] !== lastdata[x]);
-//  console.log(util.inspect(msg, {depth: null}));
-//  console.log('msg.id:',msg.id,' hex.id:',can.decToHex(msg.id),' inc:',canids.includes(can.byteToHex(msg.id)));
