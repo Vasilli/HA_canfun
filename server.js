@@ -59,16 +59,18 @@ function findBitPosition(id, bytepos, new_byte, old_byte) {
 //---------------------------
 function addJSON(id, bytepos, bitpos, bitstat) {
 
-  var json = {'attributes':{}};
+  if(candesc[id] && candesc[id][bytepos] && candesc[id][bytepos][bitpos]) {
+    var json = {'attributes':{}};
 
-  json.entity_id = candesc[id][bytepos][bitpos].sn;
-  json.state = bitstat;
-  json.attributes.id = id;
-  json.attributes.idx = bytepos;
-  json.attributes.pos = bitpos;
-  json.attributes.friendly_name = candesc[id][bytepos][bitpos].fn;
+    json.entity_id = candesc[id][bytepos][bitpos].sn;
+    json.state = bitstat;
+    json.attributes.id = id;
+    json.attributes.idx = bytepos;
+    json.attributes.pos = bitpos;
+    json.attributes.friendly_name = candesc[id][bytepos][bitpos].fn;
 
-  rest_POST(json);
+    rest_POST(json);
+  }
 }
 
 //---------------------------
@@ -80,7 +82,8 @@ function rest_POST(json) {
     .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJkMDZmNTRhNzI4NDk0NDliYTNkNWFhZGEwMjA1MzcyYSIsImlhdCI6MTcwNDU4OTMxMiwiZXhwIjoyMDE5OTQ5MzEyfQ.WqMshC_Pp0wYG0Bao2eronDEDDc5EiYQPZnCDF0UVFU')
     .set('accept', 'json')
     .end((err, res) => {
-      //console.log(res.text);
+//      console.log(res.text);
+//      console.log('--------------');
     });
 }
 

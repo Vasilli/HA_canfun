@@ -1,13 +1,43 @@
 {
+  "1F3":{
+    "0": {
+      "1": {"fn":"Phone Button","sn":"binary_sensor.in_phone_button"},
+      "4": {"fn":"NAVI/MAP Button","sn":"binary_sensor.in_navi_map_button"},
+      "5": {"fn":"Radio Button","sn":"binary_sensor.in_radio_button"},
+      "6": {"fn":"Quick Access Button","sn":"binary_sensor.in_quick_access_button"}
+    },
+    "3": {
+      "6": {"fn":"ON/OFF Button","sn":"binary_sensor.in_on_off_button"}
+    }
+  },
   "335": {
+    "4": {
+      "0": {"fn":"Parking1 Signal","sn":"binary_sensor.in_parking1_signal"},
+      "3": {"fn":"Beam1 Signal","sn":"binary_sensor.in_beam1_signal"},
+      "6": {"fn":"Parking2 Signal","sn":"binary_sensor.in_parking2_signal"}
+    },
     "5": {
-      "0": {"fn":"Turn Signal","sn":"binary_sensor.in_turn_signal"}
+      "0": {"fn":"Turn Signal","sn":"binary_sensor.in_turn_signal"},
+      "1": {"fn":"Emergency Signal","sn":"binary_sensor.in_emergency_signal"}
     }
   },
   "3C2": {
+    "1": {
+      "4": {"fn":"3C2_1_4 Signal","sn":"binary_sensor.in_3C2_1_4_signal"},
+      "6": {"fn":"Parking1 Signa3","sn":"binary_sensor.in_parking3_signal"}
+    },
+    "2": {
+      "0": {"fn":"Beam2 Signal","sn":"binary_sensor.in_beam2_signal"},
+      "2": {"fn":"High Beam Signal","sn":"binary_sensor.in_high_beam_signal"}
+    },
     "3": {
       "3": {"fn":"Left Turn Signal","sn":"binary_sensor.in_left_turn_signal"},
       "5": {"fn":"Right Turn Signal","sn":"binary_sensor.in_right_turn_signal"}
+    }
+  },
+  "46B": {
+    "1": {
+      "4": {"fn":"36B_1_4 Signal","sn":"binary_sensor.in_36B_1_4_signal"}
     }
   }
 
