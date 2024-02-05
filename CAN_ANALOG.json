@@ -1,0 +1,5 @@
+{
+  "4D7": {"fn":"Signal 4D7_3210","sn":"sensor.in_4D7_3210_signal","skip":1,"byte":[3,2,1,0]},
+  "122": {"fn":"Signal 122_0_1","sn":"sensor.in_122_0_1_signal","skip":5,"byte":[0,1]}
+}
+
