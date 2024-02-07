@@ -12,7 +12,7 @@
   },
   "335": {
     "4": {
-      "0": {"fn":"Parking1 Signal","sn":"binary_sensor.in_parking1_signal"},
+      "0": {"fn":"Low Beam Signal","sn":"binary_sensor.in_low_beam_signal"},
       "3": {"fn":"Beam1 Signal","sn":"binary_sensor.in_beam1_signal"},
       "6": {"fn":"Parking2 Signal","sn":"binary_sensor.in_parking2_signal"}
     },
@@ -24,7 +24,7 @@
   "3C2": {
     "1": {
       "4": {"fn":"3C2_1_4 Signal","sn":"binary_sensor.in_3C2_1_4_signal"},
-      "6": {"fn":"Parking1 Signa3","sn":"binary_sensor.in_parking3_signal"}
+      "6": {"fn":"Parking Signal","sn":"binary_sensor.in_parking_signal"}
     },
     "2": {
       "0": {"fn":"Beam2 Signal","sn":"binary_sensor.in_beam2_signal"},
