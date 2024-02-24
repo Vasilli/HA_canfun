@@ -1,4 +1,10 @@
 {
+  "075": {"fn":"Signal 075_10","sn":"sensor.in_075_10","byte":[1,0]},
+  "147": {"fn":"Signal 147_2","sn":"sensor.in_147_2","byte":[2]},
+  "1E5": {"fn":"Signal 1E5_2","sn":"sensor.in_1E5_2","byte":[2]},
+  "30B": {"fn":"Signal 30B_210","sn":"sensor.in_30B_210","byte":[2,1,0]},
+  "38E": {"fn":"Signal 38E_01","sn":"sensor.in_38E_01","byte":[0,1]},
+  "4D7": {"fn":"Signal 4D7_3210","sn":"sensor.in_4D7_3210","byte":[3,2,1,0]},
   "4D7": {"fn":"signal_4D7_3210","sn":"sensor.in_4D7_3210_signal","byte":[3,2,1,0]},
   "122": {"fn":"signal_122_0_1","sn":"sensor.in_122_0_1_signal","byte":[0,1]}
 }
