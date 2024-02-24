@@ -1,36 +1,16 @@
-const can        = require('./init.js');
-const binary     = require('./node_binary.js');
-const analog     = require('./node_analog.js');
-//const util       = require('util');
-//const superagent = require('superagent');
+const superagent = require('superagent');
 const candesc    = require('./CAN_BINARY.json');
 const canids     = Object.keys(candesc);
-const analogdesc = require('./CAN_ANALOG.json');
-const analogids  = Object.keys(analogdesc);
 
-//console.log('binary:',canids);
-//console.log('analog:',analogids);
+console.log('binary:',canids);
 
-//---------------------------
-can.onMessage(function(msg) {
-
-  var id = can.byteToHex(msg.id);
-  if(canids.includes(id)) { // binary
-    binary.findBytePosition(id, msg.data);
-  }
-  if(analogids.includes(id)) { // analog
-    analog.getByteData(id, msg.data);
-  } // if
-});
-
-
-/*
 //==============BINARY=========
+
 //---------------------------
 var oldbyte = {};
 // byte: 00,01,02,03,04,05,06,07
 // bit:  07,06,05,04,03,02,01,00
-function findBytePosition(id, newbyte) {
+module.exports.findBytePosition = function(id, newbyte) {
 
   if(oldbyte[id]) {
     var lastdata = oldbyte[id];
@@ -80,43 +60,6 @@ function addJSON(id, bytepos, bitpos, bitstat) {
 }
 
 
-//==============ANALOG=========
-
-//---------------------------
-var oldskip = {};
-function getByteData(id, newbyte) {
-
-  //console.log(id,' : ', newbyte);
-  var skip = oldskip[id] || 0;
-  if(skip) {
-    oldskip[id] -= 1;
-  }
-  else {
-    oldskip[id] = analogdesc[id].skip;
-
-    if(analogdesc[id].hasOwnProperty('byte')) {
-      var value = 0;
-      for(const bytedata of analogdesc[id].byte) {
-        value += newbyte[bytedata];
-      }
-      addAnalogJSON(id, value);
-    } // if
-  } // if
-}
-
-//---------------------------
-function addAnalogJSON(id, value) {
-
-  var json = {'attributes':{}};
-  json.entity_id = analogdesc[id].sn;
-  json.state = value;
-  json.attributes.id = id;
-  json.attributes.friendly_name = analogdesc[id].fn;
-  //console.log(json);
-  rest_POST(json);
-}
-
-
 //---------------------------
 function rest_POST(json) {
 
@@ -131,4 +74,3 @@ function rest_POST(json) {
     });
 }
 
-*/

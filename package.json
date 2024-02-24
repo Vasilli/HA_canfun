@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Vasilli/HA_canfun.git",
   "dependencies": {
     "minimist": "^1.2.8",
+    "prom-client": "^15.1.0",
     "socketcan": "^2.0.1",
     "superagent": "^8.1.2"
   }
