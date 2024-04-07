@@ -53,6 +53,9 @@ function sendPrometheus(id, newbyte) {
     odb2.set({ id: id, bit: 0 }, newbyte[0]);
     odb2.set({ id: id, bit: 1 }, newbyte[1]);
   }
+  if(newbyte.length === 1) {
+    odb2.set({ id: id, bit: 0 }, newbyte[0]);
+  }
 
   gateway.pushAdd({ jobName: 'canbus', register })
     .then(({ resp, body }) => {

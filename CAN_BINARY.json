@@ -23,7 +23,7 @@
   },
   "3C2": {
     "1": {
-      "4": {"fn":"3C2_1_4 Signal","sn":"binary_sensor.in_3C2_1_4_signal"},
+      "4": {"fn":"3C2_1_4 Manual Parking","sn":"binary_sensor.in_3C2_1_4_signal"},
       "6": {"fn":"Parking Right Signal","sn":"binary_sensor.in_parking_right_signal"}
     },
     "2": {
@@ -38,6 +38,11 @@
   "46B": {
     "1": {
       "4": {"fn":"Emergency Button","sn":"binary_sensor.in_emergency_button"}
+    }
+  },
+  "4BD": {
+    "0": {
+      "4": {"fn":"Stop Pedal","sn":"binary_sensor.in_stop_pedal"}
     }
   }
 

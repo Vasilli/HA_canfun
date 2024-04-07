@@ -1,14 +1,21 @@
 {
-  "75": {"fn":"Signal 075","sn":"sensor.in_075","byte":[]},
   "122": {"fn":"Signal 122","sn":"sensor.in_122","byte":[]},
   "149": {"fn":"Signal 149","sn":"sensor.in_149","byte":[]},
-  "1E5": {"fn":"Signal 1E5","sn":"sensor.in_1E5","byte":[]},
-  "2F3": {"fn":"Signal 2F3","sn":"sensor.in_2F3","byte":[]},
-  "2F5": {"fn":"Signal 2F5","sn":"sensor.in_2F5","byte":[]},
-  "2F7": {"fn":"Signal 2F7","sn":"sensor.in_2F7","byte":[]},
+  "2C0": {"fn":"Signal 2C0","sn":"sensor.in_2C0","byte":[]},
+  "2C4": {"fn":"Signal 2C4","sn":"sensor.in_2C4","byte":[]},
+  "309": {"fn":"Signal 309","sn":"sensor.in_309","byte":[]},
+  "30B": {"fn":"Signal 30B","sn":"sensor.in_30B","byte":[]},
   "370": {"fn":"Signal 370","sn":"sensor.in_370","byte":[]},
   "37F": {"fn":"Signal 37F","sn":"sensor.in_37F","byte":[]},
-  "38E": {"fn":"Signal 38E","sn":"sensor.in_38E","byte":[]},
-  "3C0": {"fn":"Signal 3C0","sn":"sensor.in_3C0","byte":[]}
+  "3C0": {"fn":"Signal 3C0","sn":"sensor.in_3C0","byte":[]},
+  "3CE": {"fn":"Signal 3CE","sn":"sensor.in_3CE","byte":[]},
+  "3DB": {"fn":"Signal 3DB","sn":"sensor.in_3DB","byte":[]},
+  "3E2": {"fn":"Signal 3E2","sn":"sensor.in_3E2","byte":[]},
+  "3EB": {"fn":"Signal 3EB","sn":"sensor.in_3EB","byte":[]},
+  "3ED": {"fn":"Signal 3ED","sn":"sensor.in_3ED","byte":[]},
+  "3EF": {"fn":"Signal 3EF","sn":"sensor.in_3EF","byte":[]},
+  "40C": {"fn":"Signal 40C","sn":"sensor.in_40C","byte":[]},
+  "48A": {"fn":"Signal 48A","sn":"sensor.in_48A","byte":[]},
+  "4D8": {"fn":"Signal 4D8","sn":"sensor.in_4D8","byte":[]}
 }
 
