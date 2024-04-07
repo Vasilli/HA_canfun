@@ -13,9 +13,6 @@
   "3E2": {"fn":"Signal 3E2","sn":"sensor.in_3E2","byte":[]},
   "3EB": {"fn":"Signal 3EB","sn":"sensor.in_3EB","byte":[]},
   "3ED": {"fn":"Signal 3ED","sn":"sensor.in_3ED","byte":[]},
-  "3EF": {"fn":"Signal 3EF","sn":"sensor.in_3EF","byte":[]},
-  "40C": {"fn":"Signal 40C","sn":"sensor.in_40C","byte":[]},
-  "48A": {"fn":"Signal 48A","sn":"sensor.in_48A","byte":[]},
-  "4D8": {"fn":"Signal 4D8","sn":"sensor.in_4D8","byte":[]}
+  "3EF": {"fn":"Signal 3EF","sn":"sensor.in_3EF","byte":[]}
 }
 
