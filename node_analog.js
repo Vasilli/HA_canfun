@@ -37,19 +37,28 @@ module.exports.getByteData = function(id, newbyte) {
 //---------------------------
 function sendPrometheus(id, newbyte) {
 
-  odb2.set({ id: id, bit: 0 }, newbyte[0]);
-  odb2.set({ id: id, bit: 1 }, newbyte[1]);
-  odb2.set({ id: id, bit: 2 }, newbyte[2]);
-  odb2.set({ id: id, bit: 3 }, newbyte[3]);
-  odb2.set({ id: id, bit: 4 }, newbyte[4]);
-  odb2.set({ id: id, bit: 5 }, newbyte[5]);
-  odb2.set({ id: id, bit: 6 }, newbyte[6]);
-  odb2.set({ id: id, bit: 7 }, newbyte[7]);
+//  console.log('id:',id,' = ',newbyte,' is:',Buffer.isBuffer(newbyte),' l:',newbyte.length);
+//  console.log('id:',id,' = ',newbyte,' l:',newbyte.length);
+  if(newbyte.length === 8) {
+    odb2.set({ id: id, bit: 0 }, newbyte[0]);
+    odb2.set({ id: id, bit: 1 }, newbyte[1]);
+    odb2.set({ id: id, bit: 2 }, newbyte[2]);
+    odb2.set({ id: id, bit: 3 }, newbyte[3]);
+    odb2.set({ id: id, bit: 4 }, newbyte[4]);
+    odb2.set({ id: id, bit: 5 }, newbyte[5]);
+    odb2.set({ id: id, bit: 6 }, newbyte[6]);
+    odb2.set({ id: id, bit: 7 }, newbyte[7]);
+  }
+  if(newbyte.length === 2) {
+    odb2.set({ id: id, bit: 0 }, newbyte[0]);
+    odb2.set({ id: id, bit: 1 }, newbyte[1]);
+  }
 
   gateway.pushAdd({ jobName: 'canbus', register })
     .then(({ resp, body }) => {
 //      console.log(`Body: ${body}`);
 //      console.log(`Response status: ${resp.statusCode}`);
+//      console.log('Resp:',resp);
     })
     .catch(err => {
       console.log(`Error: ${err}`);

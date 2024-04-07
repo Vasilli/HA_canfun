@@ -1,5 +1,14 @@
 {
-  "122": {"fn":"Signal 122","sn":"sensor.in_122","byte":[0,1]},
-  "4D7": {"fn":"Signal 4D7","sn":"sensor.in_4D7","byte":[3,2,1,0]}
+  "75": {"fn":"Signal 075","sn":"sensor.in_075","byte":[]},
+  "122": {"fn":"Signal 122","sn":"sensor.in_122","byte":[]},
+  "149": {"fn":"Signal 149","sn":"sensor.in_149","byte":[]},
+  "1E5": {"fn":"Signal 1E5","sn":"sensor.in_1E5","byte":[]},
+  "2F3": {"fn":"Signal 2F3","sn":"sensor.in_2F3","byte":[]},
+  "2F5": {"fn":"Signal 2F5","sn":"sensor.in_2F5","byte":[]},
+  "2F7": {"fn":"Signal 2F7","sn":"sensor.in_2F7","byte":[]},
+  "370": {"fn":"Signal 370","sn":"sensor.in_370","byte":[]},
+  "37F": {"fn":"Signal 37F","sn":"sensor.in_37F","byte":[]},
+  "38E": {"fn":"Signal 38E","sn":"sensor.in_38E","byte":[]},
+  "3C0": {"fn":"Signal 3C0","sn":"sensor.in_3C0","byte":[]}
 }
 

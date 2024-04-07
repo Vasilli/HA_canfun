@@ -8,13 +8,12 @@ const canids     = Object.keys(candesc);
 const analogdesc = require('./CAN_ANALOG.json');
 const analogids  = Object.keys(analogdesc);
 
-//console.log('binary:',canids);
-//console.log('analog:',analogids);
 
 //---------------------------
 can.onMessage(function(msg) {
 
   var id = can.byteToHex(msg.id);
+  //console.log('id:',id);
   if(canids.includes(id)) { // binary
     binary.findBytePosition(id, msg.data);
   }
