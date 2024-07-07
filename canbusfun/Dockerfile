@@ -4,10 +4,10 @@ FROM $BUILD_FROM
 # Install requirements for add-on
 RUN \
   apk add --no-cache --virtual .build-dependencies \
-    build-base=0.5-r3 \
-    linux-headers=6.5-r0 \
-    py3-pip=23.3.1-r0 \
-    python3-dev=3.11.8-r0
+    build-base \
+    linux-headers \
+    py3-pip \
+    python3-dev
 
 # Copy data for add-on
 COPY run.sh /
