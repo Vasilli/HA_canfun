@@ -1,4 +1,9 @@
 {
+  "020": {
+    "3": {
+      "4": {"fn":"Stop Signal","sn":"binary_sensor.in_stop_signal"}
+    }
+  },
   "1F3":{
     "0": {
       "1": {"fn":"Phone Button","sn":"binary_sensor.in_phone_button"},
