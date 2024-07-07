@@ -20,9 +20,9 @@ ip link set "$DEVICE" up
 # Print current status
 ip link show "$DEVICE"
 
-#echo "Start python http server on 8000 port"
-#python3 -m http.server 8000
-echo "Start /opt/HA_canfun nodes server"
-cd /opt/HA_canfun
-node server.js
+echo "Start python http server on 8000 port"
+python3 -m http.server 8000
+#echo "Start /opt/HA_canfun nodes server"
+#cd /opt/HA_canfun
+#node server.js
 

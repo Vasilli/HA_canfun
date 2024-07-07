@@ -7,7 +7,21 @@ RUN \
     build-base=0.5-r3 \
     linux-headers=6.5-r0 \
     py3-pip=23.3.1-r0 \
-    python3-dev=3.11.8-r0
+    python3-dev=3.11.8-r0 \
+  \
+  && apk add --no-cache \
+   build-base \
+   iproute2 \
+   can-utils \
+   nodejs \
+   npm \
+   git \
+  \
+   && cd /opt \
+   && git clone https://github.com/Vasilli/HA_canfun.git \
+   && cd /opt/HA_canfun \
+   && npm install
+
 
 # Copy data for add-on
 COPY run.sh /
