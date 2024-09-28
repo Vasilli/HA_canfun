@@ -1,0 +1,15 @@
+[Unit]
+Description=CanBusFun
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+WorkingDirectory=/home/hs/REPO/HA_canfun
+ExecStart=/usr/bin/node ./server.js
+
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
+
