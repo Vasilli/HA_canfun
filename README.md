@@ -13,3 +13,6 @@ sudo systemctl status canbus
 sudo systemctl start canbus
 
 sudo systemctl enable canbus
+
+#
+
